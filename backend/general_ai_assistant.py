@@ -7,7 +7,7 @@ from langchain.chains import ConversationChain
 logger = logging.getLogger(__name__)
 
 class GeneralAIAssistant:
-    def __init__(self):
+    def __init__(self, description: str = "Tu es un assistant IA général."):
         os.environ["GROQ_API_KEY"] = "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"
         self.groq_api_key=os.environ["GROQ_API_KEY"]
         if not self.groq_api_key:
@@ -20,11 +20,13 @@ class GeneralAIAssistant:
             memory=self.memory,
             verbose=True
         )
-        logger.info("GeneralAIAssistant initialized with conversation memory.")
+        self.description = description
+        logger.info(f"GeneralAIAssistant initialized with description: {description}")
 
     def get_response(self, user_input: str) -> str:
         try:
-            response = self.conversation.predict(input=user_input)
+            context = f"{self.description}\n\nQuestion de l'utilisateur : {user_input}"
+            response = self.conversation.predict(input=context)
             logger.info("Response generated successfully")
             return response
         except Exception as e:
