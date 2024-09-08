@@ -2,6 +2,9 @@ import streamlit as st
 import requests
 import tempfile
 import os
+# Fonction pour effacer l'historique
+from streamlit.runtime.scriptrunner import RerunException
+from streamlit.runtime.scriptrunner import RerunData
 
 # Configuration de la page Streamlit
 st.set_page_config(page_title="Analyseur de Code Python, PDF et Assistant IA", layout="wide")
@@ -13,6 +16,16 @@ if 'pdf_text' not in st.session_state:
     st.session_state.pdf_text = ""
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = {"code": [], "general": [], "pdf": []}
+def clear_history(assistant_type):
+    response = send_request("clear_history", data={"assistant_type": assistant_type})
+    if response and response.get('message'):
+        st.success(response['message'])
+        st.session_state.chat_history[assistant_type] = []
+        st.experimental_rerun()
+    else:
+        st.error("Erreur lors de l'effacement de l'historique")
+
+# Dans la fonction où le bouton d'effacement est défini
 
 # Fonction pour envoyer une requête au backend
 def send_request(endpoint, data=None, files=None):
@@ -30,13 +43,14 @@ def send_request(endpoint, data=None, files=None):
         st.error(f"Erreur de communication avec le serveur: {str(e)}")
         return None
 
-# Fonction pour effacer l'historique
+
+
 def clear_history(assistant_type):
     response = send_request("clear_history", data={"assistant_type": assistant_type})
     if response and response.get('message'):
         st.success(response['message'])
         st.session_state.chat_history[assistant_type] = []
-        st.experimental_rerun()
+        st.rerun()
     else:
         st.error("Erreur lors de l'effacement de l'historique")
 
@@ -75,89 +89,82 @@ def display_chat_and_handle_questions(assistant_type, content=""):
     # Bouton pour effacer l'historique du chat
     if st.button(f"Effacer l'historique du chat {assistant_type}"):
         clear_history(assistant_type)
-
-    # Faire défiler automatiquement vers le bas
+        raise RerunException(RerunData())
+        # Faire défiler automatiquement vers le bas
     st.markdown('<script>window.scrollTo(0,document.body.scrollHeight);</script>', unsafe_allow_html=True)
 
 # Page d'analyse de code et assistant code
 def code_analysis_and_assistant_page():
     st.title("Analyse de Code Python et Assistant Code")
-
     # Analyse de code
     st.header("Analyse de Code")
-    uploaded_file = st.file_uploader("Choisissez un fichier Python", type="py")
+    uploaded_files = st.file_uploader("Choisissez un ou plusieurs fichiers Python", type="py", accept_multiple_files=True)
+    requirements_file = st.file_uploader("Choisissez le fichier requirements.txt", type="txt", accept_multiple_files=False)
 
-    if uploaded_file is not None:
-        st.write("Fichier chargé :", uploaded_file.name)
-        
+    if uploaded_files and requirements_file:
+        for uploaded_file in uploaded_files:
+            st.write("Fichier chargé :", uploaded_file.name)
+
         if st.button("Analyser et Corriger"):
-            with st.spinner("Analyse en cours..."):
-                files = {'file': uploaded_file}
-                result = send_request("analyze", files=files)
-                
-                if result:
-                    if result.get('error'):
-                        st.error("Erreur détectée :")
-                        st.code(result['error'])
-                        st.write("Code corrigé :")
-                        st.code(result['corrected_code'])
-                        st.session_state.code = result['corrected_code']
-                    else:
-                        st.success("Aucune erreur détectée.")
-                        st.write("Analyse du code :")
-                        st.write(result['analysis'])
-                        st.session_state.code = result['original_code']
+            for uploaded_file in uploaded_files:
+                with st.spinner(f"Analyse en cours pour {uploaded_file.name}..."):
+                    files = {'file': uploaded_file, 'requirements_file': requirements_file}
+                    result = send_request("analyze", files=files)
 
-    # Assistant Code
+                    if result:
+                        st.subheader(f"Résultats pour {uploaded_file.name}")
+                        if result.get('error'):
+                            st.error("Erreur détectée :")
+                            st.code(result['error'])
+                            st.write("Code corrigé :")
+                            st.code(result['corrected_code'])
+                        else:
+                            st.success("Aucune erreur détectée.")
+                            st.write("Analyse du code :")
+                            st.write(result['analysis'])
+
+                        st.session_state.code += f"\n\n# Fichier: {uploaded_file.name}\n{result.get('original_code', '')}"
+        # Assistant Code
     if st.session_state.code:
         st.write("Code actuel :")
         st.code(st.session_state.code, language="python")
         display_chat_and_handle_questions("code", st.session_state.code)
     else:
-        st.warning("Veuillez d'abord charger et analyser un fichier Python pour pouvoir poser des questions sur le code.")
+        st.warning("Veuillez d'abord charger et analyser un ou plusieurs fichiers Python pour pouvoir poser des questions sur le code.")
 
 # Page d'assistant général
 def assistant_general_page():
     st.title("Assistant Général")
     display_chat_and_handle_questions("general")
 
-# Page d'analyse de PDF et assistant PDF
 def pdf_analysis_and_assistant_page():
     st.title("Analyse de PDF et Assistant PDF")
 
     # Analyse de PDF
     st.header("Analyse de PDF")
-    uploaded_file = st.file_uploader("Choisissez un fichier PDF", type="pdf")
+    uploaded_files = st.file_uploader("Choisissez un ou plusieurs fichiers PDF", type="pdf", accept_multiple_files=True)
 
-    if uploaded_file is not None:
-        st.write("Fichier chargé :", uploaded_file.name)
-        
-        if st.button("Analyser le PDF"):
-            with st.spinner("Analyse en cours..."):
-                files = {'file': uploaded_file}
-                result = send_request("analyze_pdf", files=files)
-                
-                if result and result.get('pdf_text'):
-                    st.success("PDF analysé avec succès.")
-                    st.session_state.pdf_text = result['pdf_text']
-                    st.text_area("Aperçu du contenu du PDF :", value=result['pdf_text'][:1000] + "...", height=200)
-                    
-                    st.subheader("Métadonnées du PDF")
-                    metadata = result.get('metadata', {})
-                    for key, value in metadata.items():
-                        st.write(f"{key}: {value}")
-                    
-                    st.subheader("Informations supplémentaires")
-                    st.write(f"Nombre de pages : {result.get('page_count', 0)}")
-                else:
-                    st.error("Erreur lors de l'analyse du PDF.")
+    if uploaded_files:
+        for uploaded_file in uploaded_files:
+            st.write("Fichier chargé :", uploaded_file.name)
 
-    # Assistant PDF
-    if st.session_state.pdf_text:
+        if st.button("Analyser les PDFs"):
+            for uploaded_file in uploaded_files:
+                with st.spinner(f"Analyse en cours pour {uploaded_file.name}..."):
+                    files = {'file': uploaded_file}
+                    result = send_request("analyze_pdf", files=files)
+
+                    if result and result.get('pdf_text'):
+                        st.subheader(f"Résultats pour {uploaded_file.name}")
+                        st.success("PDF analysé avec succès.")
+                        st.session_state.pdf_text = result['pdf_text']
+                    else:
+                        st.error(f"Erreur lors de l'analyse du PDF {uploaded_file.name}.")
+                        st.session_state.pdf_text = ""
+
         display_chat_and_handle_questions("pdf", st.session_state.pdf_text)
     else:
-        st.warning("Veuillez d'abord charger et analyser un fichier PDF pour pouvoir poser des questions sur son contenu.")
-
+        st.warning("Aucun PDF n'a été chargé avec succès.")
 # Définition des pages
 pages = {
     "Analyse de Code et Assistant Code": code_analysis_and_assistant_page,
