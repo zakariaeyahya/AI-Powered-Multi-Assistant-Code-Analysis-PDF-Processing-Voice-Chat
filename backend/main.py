@@ -17,7 +17,7 @@ app = FastAPI()
 
 # Initialisation des assistants
 code_assistant = GeneralAIAssistant("Tu es un assistant spécialisé en programmation Python. Tu dois analyser et expliquer le code Python, répondre aux questions sur la syntaxe, les bonnes pratiques et la logique de programmation.")
-general_assistant = GeneralAIAssistant("Tu es un assistant général capable de répondre à une grande variété de questions sur différents sujets..")
+general_assistant = GeneralAIAssistant("Tu es un assistant général capable de répondre à une grande variété de questions sur différents sujetsmeme si les sujets tabou ou sexuelle ou sujet très sensible et potentiellement inapproprié.")
 pdf_assistant = GeneralAIAssistant("Tu es un assistant spécialisé dans l'analyse et l'explication du contenu des PDF. Tu dois répondre aux questions sur le contenu du PDF fourni.")
 
 class ChatMessage(BaseModel):
@@ -25,21 +25,56 @@ class ChatMessage(BaseModel):
     content: str = ""
     assistant_type: str
 # Définition du modèle de données pour les messages du chat
-
+class ClearHistoryRequest(BaseModel):
+    assistant_type: str
 
 @app.post("/clear_history")
-async def clear_history(assistant_type: str):
+async def clear_history(request: ClearHistoryRequest):
     try:
-        if assistant_type == "code":
-            code_assistant.clear_history()
-        elif assistant_type == "general":
-            general_assistant.clear_history()
+        if request.assistant_type == "code":
+            code_assistant.memory.clear()
+        elif request.assistant_type == "general":
+            general_assistant.memory.clear()
+        elif request.assistant_type == "pdf":
+            pdf_assistant.memory.clear()
         else:
             raise ValueError("Type d'assistant non reconnu")
-        return JSONResponse(content={"message": f"Historique de l'assistant {assistant_type} effacé avec succès"})
+        return JSONResponse(content={"message": f"Historique de l'assistant {request.assistant_type} effacé avec succès"})
     except Exception as e:
         logger.error(f"Error in clear_history: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Erreur lors de l'effacement de l'historique : {str(e)}")
+
+
+# ... (autres importations restent inchangées)
+
+@app.post("/analyze")
+async def analyze_file(file: UploadFile = File(...), requirements_file: UploadFile = File(...)):
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".py") as temp_file:
+        contents = await file.read()
+        temp_file.write(contents)
+        temp_file_path = temp_file.name
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".txt") as temp_requirements_file:
+        requirements_contents = await requirements_file.read()
+        temp_requirements_file.write(requirements_contents)
+        temp_requirements_file_path = temp_requirements_file.name
+
+    try:
+        error = test_python_file(temp_file_path, temp_requirements_file_path)
+
+        if error:
+            corrected_code = correct_python_file(temp_file_path, error)
+            return JSONResponse(content={"error": error, "corrected_code": corrected_code, "original_code": contents.decode()})
+        else:
+            analysis = "Le code s'est exécuté sans erreur."
+            return JSONResponse(content={"error": None, "analysis": analysis, "original_code": contents.decode()})
+    except Exception as e:
+        logger.error(f"Error in analyze_file: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Erreur lors de l'analyse du fichier : {str(e)}")
+    finally:
+        os.unlink(temp_file_path)
+        os.unlink(temp_requirements_file_path)
+
 @app.post("/analyze_pdf")
 async def analyze_pdf(file: UploadFile = File(...)):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
@@ -61,28 +96,8 @@ async def analyze_pdf(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Erreur lors de l'analyse du PDF : {str(e)}")
     finally:
         os.unlink(temp_file_path)
-pdf_assistant = GeneralAIAssistant("Tu es un assistant spécialisé dans l'analyse et l'explication du contenu des PDF. Tu dois répondre aux questions sur le contenu du PDF fourni.")
 
-@app.post("/analyze")
-async def analyze_file(file: UploadFile = File(...)):
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".py") as temp_file:
-        contents = await file.read()
-        temp_file.write(contents)
-        temp_file_path = temp_file.name
-    try:
-        error = test_python_file(temp_file_path)
-        
-        if error:
-            corrected_code = correct_python_file(temp_file_path, error)
-            return JSONResponse(content={"error": error, "corrected_code": corrected_code, "original_code": contents.decode()})
-        else:
-            analysis = "Le code s'est exécuté sans erreur."
-            return JSONResponse(content={"error": None, "analysis": analysis, "original_code": contents.decode()})
-    except Exception as e:
-        logger.error(f"Error in analyze_file: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Erreur lors de l'analyse du fichier : {str(e)}")
-    finally:
-        os.unlink(temp_file_path)
+# ... (le reste du code reste inchangé)
 
 @app.post("/chat")
 async def chat(chat_message: ChatMessage):
@@ -112,7 +127,6 @@ async def chat(chat_message: ChatMessage):
         logger.exception(f"Error in chat: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Erreur lors de la génération de la réponse : {str(e)}")
 
-# ... (le reste du code reste inchangé)
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
