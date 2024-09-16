@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 class GeneralAIAssistant:
     def __init__(self, description: str = "Tu es un assistant IA général."):
-        os.environ["GROQ_API_KEY"] = "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"
+        os.environ["GROQ_API_KEY"] = "api_groq"#remplacer par votre api
         self.groq_api_key=os.environ["GROQ_API_KEY"]
         if not self.groq_api_key:
             raise ValueError("La clé API Groq n'est pas définie. Utilisez os.environ['GROQ_API_KEY'] = 'votre_clé_api' pour la définir.")
