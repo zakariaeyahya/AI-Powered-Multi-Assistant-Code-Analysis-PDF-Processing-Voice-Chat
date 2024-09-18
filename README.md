@@ -1,46 +1,131 @@
-# Mon Projet IA Innovant
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistant IA Multifonction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Assistant IA Multifonction</h1>
 
-Bienvenue dans mon projet IA innovant, où j'ai développé une application révolutionnaire d'analyse et d'assistance IA.
+    <h2>Description</h2>
+    <p>Ce projet est une application d'assistant IA multifonction qui combine l'analyse de code Python, le traitement de documents PDF, un assistant général et un chatbot vocal. L'application utilise une interface utilisateur Streamlit et un backend FastAPI, intégrant des modèles d'IA avancés pour fournir une assistance intelligente dans divers domaines.</p>
 
-## À propos
+    <h2>Fonctionnalités principales</h2>
+    <ol>
+        <li>
+            <strong>Analyse de Code Python et Assistant Code</strong>
+            <ul>
+                <li>Analyse statique de code Python</li>
+                <li>Détection et correction d'erreurs</li>
+                <li>Assistant IA pour répondre aux questions sur le code</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Analyse de PDF et Assistant PDF</strong>
+            <ul>
+                <li>Extraction de texte et de métadonnées de fichiers PDF</li>
+                <li>Résumé automatique du contenu</li>
+                <li>Assistant IA pour répondre aux questions sur les documents</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Assistant Général</strong>
+            <ul>
+                <li>IA polyvalente pour répondre à une variété de questions</li>
+                <li>Aide à la recherche et à la résolution de problèmes</li>
+                <li>Suggestions et idées créatives</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Chatbot Vocal</strong>
+            <ul>
+                <li>Interface de conversation vocale avec l'IA</li>
+                <li>Transcription automatique de la voix en texte</li>
+                <li>Réponses vocales générées par l'IA</li>
+            </ul>
+        </li>
+    </ol>
 
-Ce projet vise à créer un écosystème IA intégré qui autonomise les utilisateurs dans leurs tâches quotidiennes, de l'analyse de code à la compréhension de documents complexes. Notre objectif est de rendre l'IA accessible, utile et transparente pour tous.
+    <h2>Technologies utilisées</h2>
+    <ul>
+        <li><strong>Frontend</strong> : Streamlit</li>
+        <li><strong>Backend</strong> : FastAPI</li>
+        <li><strong>IA</strong> : 
+            <ul>
+                <li>Modèles de traitement du langage naturel (LLM)</li>
+                <li>Modèles de traitement de la parole</li>
+                <li>Intégration de modèles multimodaux</li>
+            </ul>
+        </li>
+    </ul>
 
-### Technologies utilisées
+    <h2>Installation</h2>
+    <ol>
+        <li>Clonez le dépôt :
+            <pre><code>git clone https://github.com/votre-nom/assistant-ia-multifonction.git</code></pre>
+        </li>
+        <li>Installez les dépendances :
+            <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+        <li>Configurez les variables d'environnement :
+            <pre><code>export GROQ_API_KEY=votre_clé_api_groq</code></pre>
+        </li>
+        <li>Lancez l'application :
+            <pre><code>streamlit run app.py</code></pre>
+        </li>
+    </ol>
 
-* **Frontend :** Streamlit pour une interface utilisateur réactive et intuitive
-* **Backend :** FastAPI pour des performances optimales et une scalabilité accrue
-* **IA :** Modèles de traitement du langage naturel et de la parole à la pointe de la technologie
-* **Dépendances :** langchain_groq, PyPDF2, torch, torchaudio, numpy, et plus encore...
+    <h2>Utilisation</h2>
+    <ol>
+        <li>Accédez à l'application via votre navigateur (généralement à l'adresse <code>http://localhost:8501</code>).</li>
+        <li>Utilisez la barre latérale pour naviguer entre les différentes fonctionnalités.</li>
+        <li>Suivez les instructions à l'écran pour utiliser chaque outil.</li>
+    </ol>
 
-## Fonctionnalités
+    <h2>Contribution</h2>
+    <p>Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à soumettre une pull request.</p>
 
-* **Analyse de code Python et Assistant Code :** Analyse statique de code Python, détection d'erreurs et suggestions de corrections, assistant IA pour répondre à vos questions sur le code
-* **Analyse de PDF et Assistant PDF :** Extraction de texte et de métadonnées de fichiers PDF, résumé automatique du contenu, assistant IA pour répondre à vos questions sur les documents
-* **Assistant Général :** IA polyvalente pour répondre à une variété de questions, aide à la recherche et à la résolution de problèmes, suggestions et idées créatives
-* **Chatbot Vocal :** Interface de conversation vocale avec l'IA, transcription automatique de la voix en texte, réponses vocales générées par l'IA
+    <h2>Licence</h2>
+    <p>Ce projet est sous licence MIT. Voir le fichier <code>LICENSE</code> pour plus de détails.</p>
 
-## Installation
-
-1. Clonez ce dépôt Git : `git clone https://github.com/votre-username/votre-depot.git`
-2. Installez les dépendances : `pip install -r requirements.txt`
-3. Lancez l'application : `streamlit run streamlit_app.py`
-
-## Contributeurs
-
-* **Zakariae Yahya :** Concepteur et développeur principal de l'application
-* **Autres contributeurs :** Nous sommes ouverts aux contributions externes pour améliorer et étendre nos fonctionnalités.
-
-## License
-
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
-
-## Contact
-
-* **Email :** zakariae.yh@gmail.com
-* **LinkedIn :** [Zakariae Yahya](https://www.linkedin.com/in/zakariae-yahya/)
-* **GitHub :** [zakariaeyahya](https://github.com/zakariaeyahya)
-
-### Rejoignez notre communauté !
-
-Nous sommes toujours à la recherche de talents passionnés et d'utilisateurs enthousiastes pour façonner l'avenir de l'IA. Rejoignez notre communauté sur GitHub et participez à notre mission !
+    <h2>Contact</h2>
+    <p>Pour toute question ou suggestion, veuillez contacter :</p>
+    <ul>
+        <li>Email : <a href="mailto:zakariae.yh@gmail.com">zakariae.yh@gmail.com</a></li>
+        <li>LinkedIn : <a href="https://www.linkedin.com/in/zakariae-yahya/">Zakariae Yahya</a></li>
+        <li>GitHub : <a href="https://github.com/zakariaeyahya">zakariaeyahya</a></li>
+    </ul>
+</body>
+</html>
