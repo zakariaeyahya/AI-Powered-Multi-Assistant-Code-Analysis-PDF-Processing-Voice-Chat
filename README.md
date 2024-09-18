@@ -1,6 +1,5 @@
 # Assistant IA Multifonction
 
-![Logo de l'Assistant IA Multifonction](https://via.placeholder.com/100)
 
 ## Description
 
