@@ -1,11 +1,56 @@
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistant IA Multifonction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .document-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .document-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .document-header img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="document-container">
         <div class="document">
             <div class="document-header">
                 <h1>Assistant IA Multifonction</h1>
-                <img src="https://github.com/user-attachments/assets/ef7cfacb-3647-4c70-9cc9-bb184fde2724" alt="Logo de l'Assistant IA Multifonction">
+                <img src="https://via.placeholder.com/100" alt="Logo de l'Assistant IA Multifonction">
             </div>
             <div class="document-content">
                 <h2>Description</h2>
@@ -28,28 +73,28 @@
                 
                 <h2 id="fonctionnalités">Fonctionnalités</h2>
                 <ul>
-                    <li><strong>Analyse de Code Python et Assistant Code</strong>
+                    <li><strong>Analyse de Code Python et Assistant Code :</strong>
                         <ul>
                             <li>Analyse statique de code Python</li>
                             <li>Détection et correction d'erreurs</li>
                             <li>Assistant IA pour répondre aux questions sur le code</li>
                         </ul>
                     </li>
-                    <li><strong>Analyse de PDF et Assistant PDF</strong>
+                    <li><strong>Analyse de PDF et Assistant PDF :</strong>
                         <ul>
                             <li>Extraction de texte et de métadonnées de fichiers PDF</li>
                             <li>Résumé automatique du contenu</li>
                             <li>Assistant IA pour répondre aux questions sur les documents</li>
                         </ul>
                     </li>
-                    <li><strong>Assistant Général</strong>
+                    <li><strong>Assistant Général :</strong>
                         <ul>
                             <li>IA polyvalente pour répondre à une variété de questions</li>
                             <li>Aide à la recherche et à la résolution de problèmes</li>
                             <li>Suggestions et idées créatives</li>
                         </ul>
                     </li>
-                    <li><strong>Chatbot Vocal</strong>
+                    <li><strong>Chatbot Vocal :</strong>
                         <ul>
                             <li>Interface de conversation vocale avec l'IA</li>
                             <li>Transcription automatique de la voix en texte</li>
@@ -58,7 +103,7 @@
                     </li>
                 </ul>
                 
-                <h2 id="technologies-utilisées">Technologies utilisées</h2>
+                <h2 id="technologies-utilisées">Technologies Utilisées</h2>
                 <h3 id="frontend">Frontend</h3>
                 <ul>
                     <li><img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit"> : Framework Python pour la création d'applications web interactives</li>
