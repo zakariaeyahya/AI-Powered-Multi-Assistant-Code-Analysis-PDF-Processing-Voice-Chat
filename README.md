@@ -1,3 +1,52 @@
+# Assistant IA Multifonction
+
+## Description
+Ce projet est une application d'assistant IA multifonction qui combine l'analyse de code Python, le traitement de documents PDF, un assistant général et un chatbot vocal. L'application utilise une interface utilisateur Streamlit et un backend FastAPI, intégrant des modèles d'IA avancés pour fournir une assistance intelligente dans divers domaines.
+
+## Fonctionnalités principales
+
+1. **Analyse de Code Python et Assistant Code**
+2. **Analyse de PDF et Assistant PDF**
+3. **Assistant Général**
+4. **Chatbot Vocal**
+
+## Technologies utilisées
+
+- **Frontend** : Streamlit
+- **Backend** : FastAPI
+- **IA** : Modèles de traitement du langage naturel et de la parole
+
+## Installation
+
+1. Clonez le dépôt :
+   ```
+   git clone https://github.com/votre-nom/assistant-ia-multifonction.git
+   ```
+
+2. Installez les dépendances :
+   ```
+   pip install -r requirements.txt
+   ```
+
+3. Configurez les variables d'environnement :
+   ```
+   export GROQ_API_KEY=votre_clé_api_groq
+   ```
+
+4. Lancez l'application :
+   ```
+   streamlit run app.py
+   ```
+
+## Utilisation
+
+Accédez à l'application via votre navigateur et suivez les instructions à l'écran pour utiliser chaque outil.
+
+## Version HTML du README
+
+Voici le code HTML pour une version plus détaillée et stylisée du README :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -129,3 +178,26 @@
     </ul>
 </body>
 </html>
+```
+
+## Utilisation du code HTML
+
+Pour utiliser cette version HTML :
+
+1. Créez un fichier `index.html` à la racine de votre projet avec le code ci-dessus.
+2. Si vous utilisez GitHub Pages, cette page sera automatiquement servie comme page d'accueil de votre projet.
+3. Vous pouvez également l'utiliser comme base pour une documentation plus complète.
+
+## Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à soumettre une pull request.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## Contact
+
+- Email : zakariae.yh@gmail.com
+- LinkedIn : [Zakariae Yahya](https://www.linkedin.com/in/zakariae-yahya/)
+- GitHub : [zakariaeyahya](https://github.com/zakariaeyahya)
