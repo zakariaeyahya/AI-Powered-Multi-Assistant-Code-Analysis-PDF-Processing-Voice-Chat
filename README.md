@@ -57,7 +57,7 @@ Cette application d'assistant IA multifonction combine l'analyse de code Python,
 
 1. Clonez le dépôt GitHub :
    ```
-   git clone https://github.com/votre-nom/assistant-ia-multifonction.git
+   git clone https://github.com/zakariaeyahya/assistant-ia-multifonction.git
    ```
 
 2. Installez les dépendances requises :
@@ -86,4 +86,4 @@ Les contributions sont les bienvenues ! N'hésitez pas à ouvrir des issues ou �
 Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 🌟 [Visitez l'application](http://localhost:8501)  
-✨ [Demander une fonctionnalité](https://github.com/votre-nom/assistant-ia-multifonction/issues)
+✨ [Demander une fonctionnalité](https://github.com/zakariaeyahya/assistant-ia-multifonction)
