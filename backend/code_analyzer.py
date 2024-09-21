@@ -33,7 +33,7 @@ def run_python_file(env_path, file_path):
     return result.stdout, result.stderr
 
 def analyze_with_llama(code, output, error):
-    groq_api_key = os.getenv("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")  # Utilisez une variable d'environnement pour la clé API
+    groq_api_key = os.getenv("api_groq")  # Utilisez une variable d'environnement pour la clé API
     llm = ChatGroq(model="llama-3.1-70b-versatile", temperature=0, groq_api_key=groq_api_key)
     
     prompt = f"""
