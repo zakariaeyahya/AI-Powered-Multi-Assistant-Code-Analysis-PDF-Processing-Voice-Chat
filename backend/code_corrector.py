@@ -6,7 +6,7 @@ def correct_python_file(file_path, error_message):
     # Lire le contenu du fichier
     with open(file_path, 'r', encoding='utf-8') as file:
         code = file.read()
-    os.environ["GROQ_API_KEY"] = "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"
+    os.environ["GROQ_API_KEY"] = "api_groq"
     groq_api_key=os.environ["GROQ_API_KEY"]
     # Créer une instance de ChatGroq avec la clé API fournie
     llm = ChatGroq(model="llama-3.1-70b-versatile", temperature=0, groq_api_key=groq_api_key)
