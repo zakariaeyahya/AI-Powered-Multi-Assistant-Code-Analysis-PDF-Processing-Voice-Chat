@@ -1,5 +1,15 @@
 # Assistant IA Multifonction
-
+<p>
+  <a href="https://www.youtube.com/watch?v=388w5UptraQ&t=99s">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube">
+  </a>
+  <a href="https://github.com/zakariaeyahya/assistant-ia-multifonction">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  </a>
+  <a href="https://www.linkedin.com/in/zakariae-yahya/">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+  </a>
+</p>
 
 ## Description
 
