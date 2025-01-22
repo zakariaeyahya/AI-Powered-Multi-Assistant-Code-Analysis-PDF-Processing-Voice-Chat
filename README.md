@@ -12,6 +12,7 @@
 </p>
 
 ## Description
+![_Logigramme (2)](https://github.com/user-attachments/assets/2b513da3-128c-4e92-b3e3-7360d0fc30f5)
 
 Cette application d'assistant IA multifonction combine l'analyse de code Python, le traitement de documents PDF, un assistant général et un chatbot vocal. Elle utilise une interface utilisateur Streamlit et un backend FastAPI, intégrant des modèles d'IA avancés pour fournir une assistance intelligente dans divers domaines.
 
