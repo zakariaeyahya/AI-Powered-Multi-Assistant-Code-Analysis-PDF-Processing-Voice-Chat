@@ -17,7 +17,7 @@ app = FastAPI()
 
 # Initialisation des assistants
 code_assistant = GeneralAIAssistant("Tu es un assistant spécialisé en programmation Python. Tu dois analyser et expliquer le code Python, répondre aux questions sur la syntaxe, les bonnes pratiques et la logique de programmation.")
-general_assistant = GeneralAIAssistant("Tu es un assistant général capable de répondre à une grande variété de questions sur différents sujetsmeme si les sujets tabou ou sexuelle ou sujet très sensible et potentiellement inapproprié.")
+general_assistant = GeneralAIAssistant("Tu es un assistant général capable de répondre à une grande variété de questions sur différents sujetsmeme .")
 pdf_assistant = GeneralAIAssistant("Tu es un assistant spécialisé dans l'analyse et l'explication du contenu des PDF. Tu dois répondre aux questions sur le contenu du PDF fourni.")
 
 class ChatMessage(BaseModel):
