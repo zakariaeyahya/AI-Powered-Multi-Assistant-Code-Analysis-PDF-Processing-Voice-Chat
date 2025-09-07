@@ -1,4 +1,7 @@
-# Assistant IA Multifonction
+
+---
+
+# Multifunctional AI Assistant
 <p>
   <a href="https://www.youtube.com/watch?v=388w5UptraQ&t=99s">
     <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube">
@@ -13,88 +16,79 @@
 
 ## Description
 ![_Logigramme (2)](https://github.com/user-attachments/assets/2b513da3-128c-4e92-b3e3-7360d0fc30f5)
+This multifunctional AI assistant application combines Python code analysis, PDF document processing, a general assistant, and a voice chatbot. It uses a Streamlit user interface and a FastAPI backend, integrating advanced AI models to provide intelligent assistance across various domains.
 
-Cette application d'assistant IA multifonction combine l'analyse de code Python, le traitement de documents PDF, un assistant général et un chatbot vocal. Elle utilise une interface utilisateur Streamlit et un backend FastAPI, intégrant des modèles d'IA avancés pour fournir une assistance intelligente dans divers domaines.
-
-## Table des matières
-
-- [Fonctionnalités](#fonctionnalités)
-- [Technologies utilisées](#technologies-utilisées)
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
   - [Frontend](#frontend)
   - [Backend](#backend)
-  - [IA](#ia)
-- [Configuration et Démarrage](#configuration-et-démarrage)
+  - [AI](#ai)
+- [Setup and Launch](#setup-and-launch)
 - [Contribution](#contribution)
-- [Licence](#licence)
+- [License](#license)
 
-## Fonctionnalités
+## Features
+- **Python Code Analysis and Code Assistant:**
+  - Static analysis of Python code
+  - Error detection and correction
+  - AI assistant to answer questions about code
+- **PDF Analysis and PDF Assistant:**
+  - Text and metadata extraction from PDF files
+  - Automatic content summarization
+  - AI assistant to answer questions about documents
+- **General Assistant:**
+  - Versatile AI to answer a variety of questions
+  - Assistance with research and problem-solving
+  - Creative suggestions and ideas
+- **Voice Chatbot:**
+  - Voice conversation interface with AI
+  - Automatic voice-to-text transcription
+  - AI-generated voice responses
 
-- **Analyse de Code Python et Assistant Code :**
-  - Analyse statique de code Python
-  - Détection et correction d'erreurs
-  - Assistant IA pour répondre aux questions sur le code
-
-- **Analyse de PDF et Assistant PDF :**
-  - Extraction de texte et de métadonnées de fichiers PDF
-  - Résumé automatique du contenu
-  - Assistant IA pour répondre aux questions sur les documents
-
-- **Assistant Général :**
-  - IA polyvalente pour répondre à une variété de questions
-  - Aide à la recherche et à la résolution de problèmes
-  - Suggestions et idées créatives
-
-- **Chatbot Vocal :**
-  - Interface de conversation vocale avec l'IA
-  - Transcription automatique de la voix en texte
-  - Réponses vocales générées par l'IA
-
-## Technologies Utilisées
-
+## Technologies Used
 ### Frontend
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) : Framework Python pour la création d'applications web interactives
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+Streamlit: Python framework for creating interactive web applications
 
 ### Backend
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white) : Framework Python pour la création d'API RESTful
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+FastAPI: Python framework for creating RESTful APIs
 
-### IA
-![LLM](https://img.shields.io/badge/LLM-4B0082?style=for-the-badge&logo=openai&logoColor=white) : Modèles de traitement du langage naturel
+### AI
+![LLM](https://img.shields.io/badge/LLM-4B0082?style=for-the-badge&logo=openai&logoColor=white)
+LLM: Natural language processing models
 
-![Speech Processing](https://img.shields.io/badge/Speech_Processing-FF6F61?style=for-the-badge&logo=audiomack&logoColor=white) : Modèles de traitement de la parole
+![Speech Processing](https://img.shields.io/badge/Speech_Processing-FF6F61?style=for-the-badge&logo=audiomack&logoColor=white)
+Speech Processing: Speech processing models
 
-![Multimodal Models](https://img.shields.io/badge/Multimodal_Models-6236FF?style=for-the-badge&logo=tensorflow&logoColor=white) : Intégration de modèles multimodaux
+![Multimodal Models](https://img.shields.io/badge/Multimodal_Models-6236FF?style=for-the-badge&logo=tensorflow&logoColor=white)
+Multimodal Models: Integration of multimodal models
 
-## Configuration et Démarrage
-
-1. Clonez le dépôt GitHub :
-   ```
+## Setup and Launch
+1. Clone the GitHub repository:
+   ```bash
    git clone https://github.com/zakariaeyahya/assistant-ia-multifonction.git
    ```
-
-2. Installez les dépendances requises :
-   ```
+2. Install the required dependencies:
+   ```bash
    pip install -r requirements.txt
    ```
-
-3. Configurez les variables d'environnement :
+3. Set up environment variables:
+   ```bash
+   export GROQ_API_KEY=your_groq_api_key
    ```
-   export GROQ_API_KEY=votre_clé_api_groq
-   ```
-
-4. Lancez l'application :
-   ```
+4. Launch the application:
+   ```bash
    streamlit run app.py
    ```
-
-5. Accédez à l'application via votre navigateur à l'adresse [http://localhost:8501](http://localhost:8501).
+5. Access the application via your browser at [http://localhost:8501](http://localhost:8501).
 
 ## Contribution
+Contributions are welcome! Feel free to open issues or submit pull requests if you have suggestions for improvements or have identified bugs.
 
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir des issues ou à soumettre des pull requests si vous avez des suggestions d'amélioration ou si vous avez identifié des bugs.
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-## Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-🌟 [Visitez l'application](http://localhost:8501)  
-✨ [Demander une fonctionnalité](https://github.com/zakariaeyahya/assistant-ia-multifonction)
+🌟 [Visit the application](http://localhost:8501)
+✨ [Request a feature](https://github.com/zakariaeyahya/assistant-ia-multifonction)
